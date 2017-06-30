@@ -2,19 +2,25 @@ import java.lang.Math;
 import java.util.Random;
 import java.util.Scanner;
 
+//Author: Jenny St. Peters
+//June 29, 2017
+//Lab 5 - Dice Roller App
+
 //Application that simulates dice rolling
 public class DiceRoller {
 
     //Method using Math Class
     public static int getMathRandomNumGenerator(int diceMax) {
-        int number = (int) (Math.random() * diceMax);
+        //Fix to remove zero - ceiling
+        int number = (int) Math.ceil(Math.random() * diceMax) ;
         return number;
     }
 
     //Method using Random Class
     public static int getRandomNumGenerator(int diceMax) {
         Random randomObject = new Random();
-        int number2 = randomObject.nextInt(diceMax);
+        //Random is zero to number exclusive - add 1 to get to diceMax
+        int number2 = randomObject.nextInt(diceMax + 1);
         return number2;
     }
 
@@ -51,21 +57,21 @@ public class DiceRoller {
             do {
                 System.out.print("How many sides should each die have? ");
 
-                //Retry if entry was not a positive integer
+                //Retry if entry was not an integer
                 while (!entry.hasNextInt()) {
-                    System.out.println("Must be an integer. Please try again...");
+                    System.out.println("Must be an integer greater than 1. Please try again...");
                     System.out.print("How many sides should each die have? ");
                     entry.next();
                 }
 
                 numSides = entry.nextInt();
 
-                //Retry if entry was not a positive integer
-                if (numSides < 0) {
-                    System.out.println("Must be a positive integer. Please try again...");
+                //Retry if entry was not a positive integer greater than 1 (can't flip if only "1-sided")
+                if (numSides <= 1) {
+                    System.out.println("Must be a positive integer greater than 1. Please try again...");
                 }
 
-            } while (numSides < 0);
+            } while (numSides <= 1);
             //Clear the scanner
             entry.nextLine();
 
