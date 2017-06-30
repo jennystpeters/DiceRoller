@@ -18,6 +18,18 @@ public class DiceRoller {
         return number2;
     }
 
+    //Output special messages for Snake Eyes and Midnight (or Boxcars)
+    private static String craps(int[] crapsRoll) {
+        String specialMessage = null;
+        if ((crapsRoll[0] == 1) && (crapsRoll[1] == 1)) {
+            specialMessage = "Snake Eyes!";
+        }
+        if ((crapsRoll[0] == 6) && (crapsRoll[1] == 6)) {
+            specialMessage = "Midnight!";
+        }
+        return specialMessage;
+    }
+
     public static void main(String[] args) {
 
         String keepGoing = "y";
@@ -72,10 +84,14 @@ public class DiceRoller {
                 //if (i % 2 == 0) {
                     roll[i] = getMathRandomNumGenerator(numSides);
                 //} else {
-                    //roll[i] = getRandomNumGenerator(numSides);
+                //roll[i] = getRandomNumGenerator(numSides);
                 //}
 
                 System.out.println(roll[i]);
+            }
+
+            if(craps(roll) != null) {
+                System.out.println(craps(roll));
             }
 
             //Ask the user if he/she wants to roll the dice again
@@ -85,6 +101,6 @@ public class DiceRoller {
 
             rollNumber++;
         }
-        System.out.println("Goodbye!");
+        System.out.print("Goodbye!");
     }
 }
