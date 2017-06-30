@@ -11,7 +11,7 @@ public class DiceRoller {
 
     //Method using Math Class
     public static int getMathRandomNumGenerator(int diceMax) {
-        //Fix to remove zero - ceiling
+        //Use Math.ceil to prevent rolling zero
         int number = (int) Math.ceil(Math.random() * diceMax) ;
         return number;
     }
